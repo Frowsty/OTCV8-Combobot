@@ -89,6 +89,18 @@ function comboBotScript()
   -- This is the follow leader switch, it will not be toggleable if we don't have a websocket (BotServer connection)
   local followMacro = macro(10, "Follow Leader", function(m) if not BotServer._websocket then m.setOff() end end)
 
+  -- This is a label to indicate the current server status (If you're connected or disconnected)
+  local serverStatus = addLabel("serverStatusText", "Server Status: Disconnected")
+  macro(10, function() 
+    if BotServer._websocket then 
+      serverStatus:setText("Server Status: Connected")
+      serverStatus:setColor("green")
+    else 
+        serverStatus:setText("Server Status: Disconnected")
+        serverStatus:setColor("red")
+    end
+  end)
+
   -- This is where we initialize our botserver and add a listener to it
   -- This part of the script is specifically for the follow leader
   -- We make sure that there's an accessKey since this is the channelID we will use for the server
@@ -102,8 +114,8 @@ function comboBotScript()
   local startFollowServer = addButton("button4", "Connect to server", function()
     if storage.accessKey and not BotServer._websocket then
       BotServer.init(name(), storage.accessKey)
-      info("Server connection established")
-      info("Server ID: " .. storage.accessKey)
+      --info("Server connection established")
+      --info("Server ID: " .. storage.accessKey)
       if BotServer._websocket then
         BotServer.listen("followPos", function(name, message)
           if storage.comboLeader then
@@ -127,7 +139,7 @@ function comboBotScript()
   local terminateFollowServer = addButton("button5", "Disconnect from Server", function()
     if BotServer._websocket then
       BotServer.terminate()
-      info("Disconnected from server!")
+      --info("Disconnected from server!")
     else
       error("Not connected to any server!")
     end
