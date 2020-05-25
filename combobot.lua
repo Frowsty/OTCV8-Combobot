@@ -130,6 +130,26 @@ function comboBotScript()
             end
           end
         end)
+        BotServer.listen("onUse", function(name, message)
+          if storage.comboLeader then
+            if name:lower() == storage.comboLeader:lower() then
+              local tile = g_map.getTile(message.position)
+              if tile and followMacro.isOn() then
+                use(tile:getTopUseThing())
+              end
+            end
+          end
+        end)
+        BotServer.listen("onUseWith", function(name, message)
+          if storage.comboLeader then
+            if name:lower() == storage.comboLeader:lower() then
+              local tile = g_map.getTile(message.position)
+              if tile and followMacro.isOn() then
+                useWith(message.id)
+              end
+            end
+          end
+        end)
       end
     else
       error("Server already initialized")
@@ -358,6 +378,21 @@ function comboBotScript()
   onPlayerPositionChange(function(newPos, oldPos)
     if allowFollow == "on" and BotServer._websocket and isInComboTeam then
       BotServer.send("followPos", newPos)
+    end
+  end)
+
+  onUse(function(pos, itemId, stackPos, subType)
+    if allowFollow == "on" and BotServer._websocket and isInComboTeam then
+      BotServer.send("onUse", {position = pos, id = itemId})
+    end
+  end)
+  local useWithList = {3003, 646}
+  onUseWith(function(pos, itemId, target, subType)
+    info("onUseWith " .. itemId)
+    if allowFollow == "on" and BotServer._websocket and isInComboTeam then
+      if table.find(useWithList, itemId) then
+        BotServer.send("useWith", {position = pos, id = itemId})
+      end
     end
   end)
 end
