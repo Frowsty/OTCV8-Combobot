@@ -340,22 +340,22 @@ function comboBotScript()
   end)
   -- This is where we check for keyboard input and if they press the key it will send a message to party channel
   local shouldSend = true
-  local partChannel = 1
+  local partyChannel = 1
   onKeyDown(function(keys)
     if mainSwitch.isOn() then
       if keys == storage.sendHotkey and shouldSend then
         if storage.comboType == "ue" then
           if g_game.isAttacking() then
-            talkChannel(partChannel1, "combo UE " .. g_game.getAttackingCreature():getId())
+            talkChannel(partyChannel, "combo UE " .. g_game.getAttackingCreature():getId())
           else
-            talkChannel(partChannel, "combo UE")
+            talkChannel(partyChannel, "combo UE")
           end
           say(storage.comboUE)
         elseif storage.comboType == "rune" then
           if g_game.isAttacking() then
-            talkChannel(partChannel, "combo RUNE " .. g_game.getAttackingCreature():getId())
+            talkChannel(partyChannel, "combo RUNE " .. g_game.getAttackingCreature():getId())
           else
-            talkChannel(partChannel, "combo RUNE")
+            talkChannel(partyChannel, "combo RUNE")
           end
         end
         shouldSend = false
