@@ -84,7 +84,7 @@ function comboBotScript()
 
   -- This is the main switch for the whole macro
   local mainSwitch = macro(1000, "Enable ComboBot", function() end)
-  -- A little side not to make sure that you're connected to the server in order to make use of Follow Leader
+  -- A little side note to make sure that you're connected to the server in order to make use of Follow Leader
   addLabel("id3", 'Follow Leader REQUIRES "Connect to server"')
   -- This is the follow leader switch, it will not be toggleable if we don't have a websocket (BotServer connection)
   local followMacro = macro(10, "Follow Leader", function(m) if not BotServer._websocket then m.setOff() end end)
