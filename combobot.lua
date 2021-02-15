@@ -4,7 +4,7 @@ Author: Frosty (Discord: Frosty#0186)
 Description: The reason for making this script is to hopefully teach aspiring scripters in the otcv8 community. Since releasing scripts that had the code hidden wasn't very
              popular amongst some people I chose to turn it into a script that goes through everything bit by bit. Hopefully some can appreaciate the effort I have put into
              writing the explanations for every thing that is being done in this script and for making it in the first place. It has taken quite some time to make it work.
-             I hope to see more coders out there releasing their scripts to we can grow the community and help eachother more.
+             I hope to see more coders out there releasing their scripts so we can grow the community and help eachother more.
 
 License: Copyright (C) 2020 - Frosty
 
