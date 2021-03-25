@@ -391,7 +391,7 @@ function comboBotScript()
     info("onUseWith " .. itemId)
     if allowFollow == "on" and BotServer._websocket and isInComboTeam then
       if table.find(useWithList, itemId) then
-        BotServer.send("useWith", {position = pos, id = itemId})
+        BotServer.send("onUseWith", {position = pos, id = itemId})
       end
     end
   end)
